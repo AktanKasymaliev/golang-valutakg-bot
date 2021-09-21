@@ -1,9 +1,21 @@
 package setcfg
 
-import "os"
+import (
+	"log"
+	"os"
 
+	"gopkg.in/ini.v1"
+)
+
+func parseCfg(section string, key string) (string) {
+	cfg, err := ini.Load("settings.ini")
+	if err != nil {
+		log.Fatal(err)
+    }
+	return cfg.Section(section).Key(key).String()
+}
 
 func SetCfg() {
-	os.Setenv("TG_TOKEN", "2033268440:AAEywcWdOTsXUjjF5oWe6yvrxMwavmYKDzQ")
-	os.Setenv("BANK_API", "https://banks.kg/api/v1/rates/daily/usd")
+	os.Setenv("TG_TOKEN", parseCfg("BOT", "TG_TOKEN"))
+	os.Setenv("BANK_API", parseCfg("API", "BANK_API"))
 }
