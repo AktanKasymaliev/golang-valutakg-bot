@@ -19,7 +19,7 @@ func InitBot() (*tgbotapi.BotAPI, tgbotapi.UpdatesChannel)  {
 	updates, err := PoolUpdate(*bot)
 
 	if err != nil {
-		log.Fatal(err, "ASDASD")
+		log.Fatal(err)
 	}
 
 	log.Printf("Authorized on account %s", bot.Self.UserName)
