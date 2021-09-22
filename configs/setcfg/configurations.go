@@ -17,5 +17,8 @@ func parseCfg(section string, key string) (string) {
 
 func SetCfg() {
 	os.Setenv("TG_TOKEN", parseCfg("BOT", "TG_TOKEN"))
+	os.Setenv("OK", parseCfg("BOT", "OK"))
+	os.Setenv("404", parseCfg("BOT", "404"))
+
 	os.Setenv("BANK_API", parseCfg("API", "BANK_API"))
 }

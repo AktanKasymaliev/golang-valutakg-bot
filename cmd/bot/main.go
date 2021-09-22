@@ -12,14 +12,15 @@ func main() {
 
 	setcfg.SetCfg()
 	bot, updates := app.InitBot()
-	
+
 	for update := range updates {
 
-		if update.Message == nil { // ignore any non-Message Updates
+		if update.Message == nil { 
 			continue
 		}
 
 		logic.SendHello(&update, bot)
+		logic.GiveCurrency(&update, bot)
 
 	}
 }
