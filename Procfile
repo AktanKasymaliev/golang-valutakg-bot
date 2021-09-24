@@ -1,2 +1,1 @@
-build: go build cmd/bot
-worker: go run bot.exe
+worker: go run cmd/bot/main.go
