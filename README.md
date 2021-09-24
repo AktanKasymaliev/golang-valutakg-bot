@@ -8,7 +8,7 @@ The 3 and last things for run this code
 git clone https://github.com/golang-valutakg-bot.git
 ```
 ```
-go install -v -tags origin -mod=vendor tgbot/cmd/bot
+go get
 ```
 
 ```
