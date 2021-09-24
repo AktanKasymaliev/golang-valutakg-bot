@@ -1,2 +1,2 @@
-cp: cp bin/bot /app/
+build: cp bin/bot /app/
 worker: bot
