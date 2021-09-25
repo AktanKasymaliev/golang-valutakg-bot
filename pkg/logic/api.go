@@ -28,6 +28,7 @@ func GetData(currency string) (string, string, error) {
 }
 
 func parseData(bodyBytes []byte) (string, string, error) {
+	loc, _ := time.LoadLocation("Asia/Bishkek")
 
 	var data map[string][][]float64
 	err := json.Unmarshal(bodyBytes, &data)
@@ -39,7 +40,11 @@ func parseData(bodyBytes []byte) (string, string, error) {
 	sell := data["sell"]
 	buy := data["buy"]
 	currentMonth := time.Unix(int64(buy[len(buy)-3][0]/1000), 0).Month()
-	currentDate := fmt.Sprintf("%d:%02d - %s, %d", time.Now().Hour(), time.Now().Minute(), currentMonth, time.Now().Day(),)
+	currentDate := fmt.Sprintf(
+		"%d:%02d - %s, %d", 
+		time.Now().In(loc).Hour(), 
+		time.Now().Minute(), currentMonth, 
+		time.Now().In(loc).Day())
 
 	mb := fmt.Sprintf("(%s) %s %v som", currentDate, "Purchase rate: ", buy[len(buy)-1][1])
 	sb := fmt.Sprintf("(%s) %s %v som", currentDate, "Sale rate: ", sell[len(sell)-1][1])
